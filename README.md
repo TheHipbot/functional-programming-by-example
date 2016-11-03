@@ -16,6 +16,16 @@ So without further adieu:
 
 To understand what FP is, we must understand first what it is not or how it is different. FP is diametrically opposed to imperative programming and imperative programming is what most programmers would be accustomed to. Imperative style uses mutable data and statements to modify the running state of the program. This includes controls statements like conditionals and loops as well as void functions which take no parameters and return no useful values. There is also, in most cases, the implication that each statement in the program will run synchronously and consecutively. 
 
-FP on the other hand, uses immutable values and expressions. 
+FP on the other hand uses immutable values, expressions over statements, and generally aims to reduce and contain side effects. 
 
 ## Why is Functional Programming?
+
+Why functional? FP offers a wide array of benefits when used properly and here are some:
+
+### Concurrency
+
+Since we are reaching the limits of Moore's law, CPU's are beginning to be scaled horizontally rather than vertically by adding more cores to a CPU instead of more transistors on a core. Not only that, but with cloud platforms growing in usage programs are moving toward a distributed architecture. As a result, concurrency in programs is becoming a necessity to fully utilize the resources in these systems. FP tends to be very well suited to concurrent programs because it removes the need for concurrency control and other complex problems when writing concurrent programs in a mutable environment. 
+
+In a concurrent programs it is often a need to share data between the running threads or processes of which the application comprises. This becomes problematic when all of this data is mutable since processes can be modifying the same data which others are reading. Situations such as these are a class of problems known as race conditions and they can often lead to inconsistent states in the overall application. To relieve these problems, mutations to the shared data must be regulated such that only one process can edit at a time. There are many devices that allow this regulation such as locks, semaphores and STM. The problem with using these in your code is that the overall complexity of the programs are greatly increased and due to the nature of schedulers a problem in the code can take a long time to present itself. All in all it is very difficult to write a program like this correctly.
+
+With FP all data is immutable, so once data is created it can be shared safely amongst all of the threads since none will be able to edit the data.
